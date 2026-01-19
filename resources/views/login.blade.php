@@ -22,5 +22,9 @@
     </form>
     <br>
     <a href="/register">Registrarse</a>
+    <br><br>
+    @if(session('error'))
+        <div>{{ session('error') }}</div>
+    @endif
 </body>
 </html>

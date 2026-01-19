@@ -30,5 +30,9 @@
     </form>
     <br>
     <a href="/">Inicia sesión</a>
+    <br><br>
+    @if(session('error'))
+        <div>{{ session('error') }}</div>
+    @endif
 </body>
 </html>
