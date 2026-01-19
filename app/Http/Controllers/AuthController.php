@@ -13,10 +13,10 @@ class AuthController extends Controller
 {
     public function register(Request $request): RedirectResponse
     {
-        $name = trim((string) $request->input('name'));
-        $lastName = trim((string) $request->input('last_name'));
-        $email = trim((string) $request->input('email'));
-        $password = trim((string) $request->input('password'));
+        $name = trim($request->input('name'));
+        $lastName = trim($request->input('last_name'));
+        $email = trim($request->input('email'));
+        $password = trim($request->input('password'));
 
         // Comprobar si el email ya existe
         if (User::where('email', $email)->exists()) {
@@ -37,15 +37,15 @@ class AuthController extends Controller
 
     public function login(Request $request): RedirectResponse
     {
-        $email = trim((string) $request->input('email'));
-        $password = trim((string) $request->input('password'));
+        $email = trim($request->input('email'));
+        $password = trim($request->input('password'));
 
         $credentials = [
             'email' => $email,
             'password' => $password,
         ];
 
-        if (Auth::attempt($credentials)) { // del propio Laravel para comprobar que los datos de user son correctos comparandolos con la base de datos
+        if (Auth::attempt($credentials)) { // del propio Laravel para comprobar que los datos de user son correctos comparandolos con la base de datos y inicia la sesión
             // Redirigir según el rol del usuario
             if (Auth::user()->role === 'administrador') {
                 return redirect('/home_admin');
